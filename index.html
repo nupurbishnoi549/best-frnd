@@ -12,7 +12,7 @@
             background: linear-gradient(45deg, #ff77b5, #00c6ff, #ff4785);
             background-size: 300% 300%;
             animation: gradientBG 12s ease infinite;
-            position: fixed;
+            position: relative;
             top: 0;
             left: 0;
             width: 100%;
@@ -36,10 +36,6 @@
         /* Main Container */
         .main-container {
             position: relative;
-            /* Changed from absolute */
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
             text-align: center;
             color: white;
             padding: 30px;
@@ -47,9 +43,11 @@
             border-radius: 15px;
             width: 80%;
             max-width: 600px;
-            animation: fadeIn 3s ease-out;
             margin-top: 20px;
             margin-bottom: 20px;
+            animation: fadeIn 3s ease-out;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         @keyframes fadeIn {
@@ -80,20 +78,49 @@
             background-color: #ff77b5;
         }
 
-        /* Page Transition */
-        .page {
-            display: none;
+        /* Countdown Animation */
+        #countdownNumber {
+            animation: pop 1s ease infinite;
         }
 
-        .show-page {
-            display: block;
+        @keyframes pop {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.4);
+                color: #ffd700;
+            }
         }
-.photos-section-5{
-    margin-top: 40px;
+
+        /* Responsive Design */
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background-color: #f0f0f0;
+        }
+
+        .photos-section-5 {
+            margin-top: 40px;
             gap: 30px;
             justify-items: center;
-}
-        /* Photo Section */
+        }
+
+        .centered-image {
+            width: 210px;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
         .photos-section {
             margin-top: 40px;
             display: grid;
@@ -123,83 +150,57 @@
             margin-top: 10px;
         }
 
-        /* Countdown Animation */
-        #countdownNumber {
-            animation: pop 1s ease infinite;
-        }
+      /* Adjust main container for small screens */
+@media screen and (max-width: 768px) {
+    .main-container {
+        padding: 20px;
+        width: 90%;
+        margin-top: 10px;
+    }
 
-        @keyframes pop {
+  .photos-section img {
+        width: 300px;
+        height: 411px;
+        object-fit: cover;
+  }
 
-            0%,
-            100% {
-                transform: scale(1);
-            }
+    .photos-section p {
+        font-size: 16px; /* Adjust font size */
+        line-height: 1.5; /* Adjust line height for better readability */
+    }
 
-            50% {
-                transform: scale(1.4);
-                color: #ffd700;
-            }
-        }
+    /* Additional font size adjustments for other text elements */
+    h1 {
+        font-size: 2rem; /* Smaller font size for h1 */
+        line-height: 1.3; /* Adjust line height for h1 */
+    }
 
-        /* Animation for text */
-        .animate__animated {
-            animation-duration: 1s;
-            animation-timing-function: ease;
-            animation-fill-mode: both;
-        }
-
-        .animate__fadeIn {
-            animation-name: fadeIn;
-        }
-
-        .animate__delay-2s {
-            animation-delay: 2s;
-        }
-
-        /* Responsive Design */
-        body {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-.centered-image {
-    max-width: 100%;
-    width: 350px; /* You can adjust this as needed */
-    height: 350px;
-    border-radius: 15px;
-    display: block;
-    margin: 0 auto;
-    object-fit: cover;
+    p {
+        font-size: 1rem; /* Adjust font size for regular text */
+        line-height: 1.6; /* Adjust line height for regular text */
+    }
 }
 
-        /* Adjust main container for small screens */
-        @media screen and (max-width: 768px) {
-            .main-container {
-                padding: 20px;
-                width: 90%;
-                margin-top: 10px;
-            }
+/* Remove the page display restrictions for scrolling */
+.page {
+    display: none;
+    margin-bottom: 30px;
+}
 
-            .photos-section img {
-                max-width: 100%;
-                height: auto;
-            }
+.active-page {
+    display: block;
+}
 
-            .photos-section p {
-                font-size: 16px;
-            }
-        }
     </style>
 </head>
 
 <body class="bg-animation">
 
     <!-- First Page -->
-    <div class="main-container page show-page" id="firstPage">
+    <div class="main-container page active-page" id="firstPage">
         <h1 class="text-4xl font-extrabold mb-4">For Two Lovely Best Friends 💖</h1>
         <p class="text-lg mb-6">Celebrating the bond that only grows stronger with time.</p>
-        <button class="btn-hover" id="goToSecondPageBtn">Click to See More</button>
+        <button class="btn-hover" id="goToSecondPageBtn">Let's See More!</button>
     </div>
 
     <!-- Countdown Page -->
@@ -225,7 +226,7 @@
             </div>
         </div>
 
-        <button class="btn-hover" id="goBackBtn" style="margin-top: 20px;">Click here to see more</button>
+        <button class="btn-hover" id="goToThirdPageBtn" style="margin-top: 20px;">A Heartfelt Message 💖</button>
     </div>
 
     <!-- Third Page -->
@@ -245,13 +246,13 @@
             </div>
         </div>
 
-        <button class="btn-hover" id="goBackToFirstPageBtn3" style="margin-top: 20px;">See the Heartfelt Message
-            Again</button>
+        <button class="btn-hover" id="goToFourthPageBtn" style="margin-top: 20px;">Let’s Laugh Together
+            😂</button>
     </div>
 
     <!-- Fourth Page -->
     <div class="main-container page" id="fourthPage">
-        <h1 class="text-4xl font-extrabold mb-4">A Funny Friendship Moment 😜</h1>
+        <h1 class="text-4xl font-extrabold mb-4">A Funny Friendship Moment 🫣</h1>
         <p class="text-lg mb-6">This friendship is like a USB drive. It’s always there when you need it, but it also
             sometimes needs to be "reconnected" for you to realize how much you truly need it. 😂</p>
 
@@ -259,35 +260,35 @@
             riding a
             rainbow! 🌈🦄 Both my life and Kutta's (Tamanna) are filled with joy because of you two! 💖</p>
 
-        <button class="btn-hover" id="goBackToFirstPageBtn4" style="margin-top: 20px;">Go Back to the Start of Our
-            Journey</button>
+        <button class="btn-hover" id="goToFifthPageBtn" style="margin-top: 20px;">A Special Surprise for You!
+            🎁</button>
     </div>
 
-<!-- Fifth Page -->
-<div class="main-container page" id="fifthPage">
-    <h1 class="text-4xl font-extrabold mb-4">A Small Effort from Me and Tamanna 💖</h1>
-    <p class="text-lg mb-6">This is a small effort from both me and Tamanna. We hope you both like it! A little
-        something to celebrate our beautiful partnership. 🌟</p>
+    <!-- Fifth Page -->
+    <div class="main-container page" id="fifthPage">
+        <h1 class="text-4xl font-extrabold mb-4">A Small Effort from Me and Tamanna 💖</h1>
+        <p class="text-lg mb-6">This is a small effort from both me and Tamanna. We hope you both like it! A little
+            something to celebrate our beautiful partnership. 🌟</p>
 
-    <div class="photos-section-5">
-        <div class="flex justify-center items-center w-full">
-            <img src="./assets/images/us-4.png" alt="Special Moment" class="centered-image">
+        <div class="photos-section-5">
+            <div>
+                <img src="./assets/images/us-4.png" alt="Special Moment" class="centered-image">
+            </div>
         </div>
+        <p class="text-center" style="margin-top: 20px;">A Beautiful Memory Together 💖</p>
+
+        <p class="text-white-500 font-semibold mt-4 animate__animated animate__fadeIn animate__delay-2s">— Nupur &
+            Tamanna 💌</p>
+
+        <button class="btn-hover" id="goBackToFirstPageBtn5" style="margin-top: 20px;">Back to the Beginning of Our
+            Journey 💖</button>
     </div>
-    <p class="text-center" style="margin-top: 20px;">A Beautiful Memory Together 💖</p>
-
-    <p class="text-pink-500 font-semibold mt-4 animate__animated animate__fadeIn animate__delay-2s">— Nupur &
-        Tamanna 💌</p>
-
-    <button class="btn-hover" id="goBackToFirstPageBtn5" style="margin-top: 20px;">Go Back to the Start of Our
-        Journey</button>
-</div>
 
     <script>
         const goToSecondPageBtn = document.getElementById('goToSecondPageBtn');
-        const goBackBtn = document.getElementById('goBackBtn');
-        const goBackToFirstPageBtn3 = document.getElementById('goBackToFirstPageBtn3');
-        const goBackToFirstPageBtn4 = document.getElementById('goBackToFirstPageBtn4');
+        const goToThirdPageBtn = document.getElementById('goToThirdPageBtn');
+        const goToFourthPageBtn = document.getElementById('goToFourthPageBtn');
+        const goToFifthPageBtn = document.getElementById('goToFifthPageBtn');
         const goBackToFirstPageBtn5 = document.getElementById('goBackToFirstPageBtn5');
 
         const firstPage = document.getElementById('firstPage');
@@ -297,11 +298,20 @@
         const fourthPage = document.getElementById('fourthPage');
         const fifthPage = document.getElementById('fifthPage');
 
+        // Function to hide all pages
+        function hideAllPages() {
+            firstPage.classList.remove('active-page');
+            countdownPage.classList.remove('active-page');
+            secondPage.classList.remove('active-page');
+            thirdPage.classList.remove('active-page');
+            fourthPage.classList.remove('active-page');
+            fifthPage.classList.remove('active-page');
+        }
+
         // Show Countdown then go to second page
         goToSecondPageBtn.addEventListener('click', () => {
-            firstPage.classList.remove('show-page');
-            countdownPage.classList.add('show-page');
-
+            hideAllPages();
+            countdownPage.classList.add('active-page');
             let count = 3;
             const countdownElement = document.getElementById('countdownNumber');
             countdownElement.textContent = count;
@@ -312,34 +322,34 @@
 
                 if (count === 0) {
                     clearInterval(countdownInterval);
-                    countdownPage.classList.remove('show-page');
-                    secondPage.classList.add('show-page');
+                    hideAllPages();
+                    secondPage.classList.add('active-page');
                 }
             }, 1000);
         });
 
         // Go to third page
-        goBackBtn.addEventListener('click', () => {
-            secondPage.classList.remove('show-page');
-            thirdPage.classList.add('show-page');
+        goToThirdPageBtn.addEventListener('click', () => {
+            hideAllPages();
+            thirdPage.classList.add('active-page');
         });
 
         // Go to fourth page
-        goBackToFirstPageBtn3.addEventListener('click', () => {
-            thirdPage.classList.remove('show-page');
-            fourthPage.classList.add('show-page');
+        goToFourthPageBtn.addEventListener('click', () => {
+            hideAllPages();
+            fourthPage.classList.add('active-page');
         });
 
         // Go to fifth page
-        goBackToFirstPageBtn4.addEventListener('click', () => {
-            fourthPage.classList.remove('show-page');
-            fifthPage.classList.add('show-page');
+        goToFifthPageBtn.addEventListener('click', () => {
+            hideAllPages();
+            fifthPage.classList.add('active-page');
         });
 
         // Go back to the start
         goBackToFirstPageBtn5.addEventListener('click', () => {
-            fifthPage.classList.remove('show-page');
-            firstPage.classList.add('show-page');
+            hideAllPages();
+            firstPage.classList.add('active-page');
         });
     </script>
 </body>
