@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Friends Forever!</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Background Animation */
+        .bg-animation {
+            background: linear-gradient(45deg, #ff77b5, #00c6ff, #ff4785);
+            background-size: 300% 300%;
+            animation: gradientBG 12s ease infinite;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        /* Main Container */
+        .main-container {
+            position: relative;
+            /* Changed from absolute */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            padding: 30px;
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 15px;
+            width: 80%;
+            max-width: 600px;
+            animation: fadeIn 3s ease-out;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        /* Button Style */
+        .btn-hover {
+            padding: 12px 24px;
+            background-color: #ff4785;
+            color: white;
+            font-weight: bold;
+            border-radius: 50px;
+            font-size: 18px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-hover:hover {
+            transform: scale(1.1);
+            background-color: #ff77b5;
+        }
+
+        /* Page Transition */
+        .page {
+            display: none;
+        }
+
+        .show-page {
+            display: block;
+        }
+.photos-section-5{
+    margin-top: 40px;
+            gap: 30px;
+            justify-items: center;
+}
+        /* Photo Section */
+        .photos-section {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 30px;
+            justify-items: center;
+        }
+
+        .photos-section img {
+            width: 100%;
+            max-width: 350px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .photos-section img:hover {
+            transform: translateY(-10px) scale(1.05);
+        }
+
+        .photos-section p {
+            font-size: 18px;
+            color: white;
+            font-weight: 600;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        /* Countdown Animation */
+        #countdownNumber {
+            animation: pop 1s ease infinite;
+        }
+
+        @keyframes pop {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.4);
+                color: #ffd700;
+            }
+        }
+
+        /* Animation for text */
+        .animate__animated {
+            animation-duration: 1s;
+            animation-timing-function: ease;
+            animation-fill-mode: both;
+        }
+
+        .animate__fadeIn {
+            animation-name: fadeIn;
+        }
+
+        .animate__delay-2s {
+            animation-delay: 2s;
+        }
+
+        /* Responsive Design */
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+.centered-image {
+    max-width: 100%;
+    width: 350px; /* You can adjust this as needed */
+    height: 350px;
+    border-radius: 15px;
+    display: block;
+    margin: 0 auto;
+    object-fit: cover;
+}
+
+        /* Adjust main container for small screens */
+        @media screen and (max-width: 768px) {
+            .main-container {
+                padding: 20px;
+                width: 90%;
+                margin-top: 10px;
+            }
+
+            .photos-section img {
+                max-width: 100%;
+                height: auto;
+            }
+
+            .photos-section p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-animation">
+
+    <!-- First Page -->
+    <div class="main-container page show-page" id="firstPage">
+        <h1 class="text-4xl font-extrabold mb-4">For Two Lovely Best Friends 💖</h1>
+        <p class="text-lg mb-6">Celebrating the bond that only grows stronger with time.</p>
+        <button class="btn-hover" id="goToSecondPageBtn">Click to See More</button>
+    </div>
+
+    <!-- Countdown Page -->
+    <div class="main-container page" id="countdownPage">
+        <h1 class="text-4xl font-extrabold mb-4 animate-pulse">Are You Ready? 🎉</h1>
+        <p class="text-2xl mb-4">Something special is coming in...</p>
+        <div id="countdownNumber" class="text-6xl font-bold text-pink-400">3</div>
+    </div>
+
+    <!-- Second Page -->
+    <div class="main-container page" id="secondPage">
+        <h1 class="text-4xl font-extrabold mb-4">For Two Lovely Best Friends 💖</h1>
+        <p class="text-lg mb-6">Celebrating friendship, laughter, and memories!</p>
+
+        <div class="photos-section">
+            <div>
+                <img src="./assets/images/anu.jpeg" alt="Anu">
+                <p>Anu - The Heart of the Group 💖</p>
+            </div>
+            <div>
+                <img src="./assets/images/reena.jpeg" alt="Reena">
+                <p>Reena - The Soulmate 🌟</p>
+            </div>
+        </div>
+
+        <button class="btn-hover" id="goBackBtn" style="margin-top: 20px;">Click here to see more</button>
+    </div>
+
+    <!-- Third Page -->
+    <div class="main-container page" id="thirdPage">
+        <h1 class="text-4xl font-extrabold mb-4">A Heartfelt Message for You 💖</h1>
+        <p class="text-lg mb-6">You both are the shining stars in each other's lives. Here's to endless memories,
+            laughter, and all the happiness in the world! ✨</p>
+
+        <div class="photos-section">
+            <div>
+                <img src="./assets/images/anu-reena.png" alt="Happy Photo 1">
+                <p>Forever Together 🌸</p>
+            </div>
+            <div>
+                <img src="./assets/images/4th.jpg" alt="Happy Photo 2">
+                <p>Always in the Heart 💎</p>
+            </div>
+        </div>
+
+        <button class="btn-hover" id="goBackToFirstPageBtn3" style="margin-top: 20px;">See the Heartfelt Message
+            Again</button>
+    </div>
+
+    <!-- Fourth Page -->
+    <div class="main-container page" id="fourthPage">
+        <h1 class="text-4xl font-extrabold mb-4">A Funny Friendship Moment 😜</h1>
+        <p class="text-lg mb-6">This friendship is like a USB drive. It’s always there when you need it, but it also
+            sometimes needs to be "reconnected" for you to realize how much you truly need it. 😂</p>
+
+        <p class="text-lg">Thank you both for being a part of our lives! 🥳 You make life as beautiful as a unicorn
+            riding a
+            rainbow! 🌈🦄 Both my life and Kutta's (Tamanna) are filled with joy because of you two! 💖</p>
+
+        <button class="btn-hover" id="goBackToFirstPageBtn4" style="margin-top: 20px;">Go Back to the Start of Our
+            Journey</button>
+    </div>
+
+<!-- Fifth Page -->
+<div class="main-container page" id="fifthPage">
+    <h1 class="text-4xl font-extrabold mb-4">A Small Effort from Me and Tamanna 💖</h1>
+    <p class="text-lg mb-6">This is a small effort from both me and Tamanna. We hope you both like it! A little
+        something to celebrate our beautiful partnership. 🌟</p>
+
+    <div class="photos-section-5">
+        <div class="flex justify-center items-center w-full">
+            <img src="./assets/images/us-4.png" alt="Special Moment" class="centered-image">
+        </div>
+    </div>
+    <p class="text-center" style="margin-top: 20px;">A Beautiful Memory Together 💖</p>
+
+    <p class="text-pink-500 font-semibold mt-4 animate__animated animate__fadeIn animate__delay-2s">— Nupur &
+        Tamanna 💌</p>
+
+    <button class="btn-hover" id="goBackToFirstPageBtn5" style="margin-top: 20px;">Go Back to the Start of Our
+        Journey</button>
+</div>
+
+    <script>
+        const goToSecondPageBtn = document.getElementById('goToSecondPageBtn');
+        const goBackBtn = document.getElementById('goBackBtn');
+        const goBackToFirstPageBtn3 = document.getElementById('goBackToFirstPageBtn3');
+        const goBackToFirstPageBtn4 = document.getElementById('goBackToFirstPageBtn4');
+        const goBackToFirstPageBtn5 = document.getElementById('goBackToFirstPageBtn5');
+
+        const firstPage = document.getElementById('firstPage');
+        const countdownPage = document.getElementById('countdownPage');
+        const secondPage = document.getElementById('secondPage');
+        const thirdPage = document.getElementById('thirdPage');
+        const fourthPage = document.getElementById('fourthPage');
+        const fifthPage = document.getElementById('fifthPage');
+
+        // Show Countdown then go to second page
+        goToSecondPageBtn.addEventListener('click', () => {
+            firstPage.classList.remove('show-page');
+            countdownPage.classList.add('show-page');
+
+            let count = 3;
+            const countdownElement = document.getElementById('countdownNumber');
+            countdownElement.textContent = count;
+
+            const countdownInterval = setInterval(() => {
+                count--;
+                countdownElement.textContent = count;
+
+                if (count === 0) {
+                    clearInterval(countdownInterval);
+                    countdownPage.classList.remove('show-page');
+                    secondPage.classList.add('show-page');
+                }
+            }, 1000);
+        });
+
+        // Go to third page
+        goBackBtn.addEventListener('click', () => {
+            secondPage.classList.remove('show-page');
+            thirdPage.classList.add('show-page');
+        });
+
+        // Go to fourth page
+        goBackToFirstPageBtn3.addEventListener('click', () => {
+            thirdPage.classList.remove('show-page');
+            fourthPage.classList.add('show-page');
+        });
+
+        // Go to fifth page
+        goBackToFirstPageBtn4.addEventListener('click', () => {
+            fourthPage.classList.remove('show-page');
+            fifthPage.classList.add('show-page');
+        });
+
+        // Go back to the start
+        goBackToFirstPageBtn5.addEventListener('click', () => {
+            fifthPage.classList.remove('show-page');
+            firstPage.classList.add('show-page');
+        });
+    </script>
+</body>
+
+</html>
